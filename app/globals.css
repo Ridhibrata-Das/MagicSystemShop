@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050a14;
+  --foreground: #e2f1f8;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-rajdhani), sans-serif;
+  /* Deep space radial gradient background simulating the void */
+  background-image: radial-gradient(circle at center, #0a1128 0%, #030610 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Base scrollbar styling for a futuristic feeling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(10, 15, 25, 0.9);
+  border-left: 1px solid rgba(0, 240, 255, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.8);
+}
+
+/* Focus outline glow instead of basic ring */
+*:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.8) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-orbitron), sans-serif;
+  letter-spacing: 0.05em;
+}
+/* Rarity Manifestation Auras */
+@keyframes rarity-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes mythic-flicker {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.8)); }
+  50% { opacity: 0.8; filter: drop-shadow(0 0 25px rgba(239, 68, 68, 1)); }
+}
+
+@keyframes grand-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(245, 158, 11, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+}
+
+.aura-common { border-color: rgba(156, 163, 175, 0.3); }
+.aura-rare { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
+.aura-epic { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); animation: grand-pulse 4s infinite ease-in-out; }
+.aura-legendary { 
+  border-color: rgba(245, 158, 11, 0.8); 
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.5); 
+  background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: rarity-shimmer 3s infinite linear, grand-pulse 3s infinite ease-in-out;
+}
+.aura-mythical { 
+  border-color: #ef4444; 
+  box-shadow: 0 0 40px rgba(239, 68, 68, 0.6); 
+  animation: mythic-flicker 2s infinite ease-in-out;
+  position: relative;
+}
+
+.aura-mythical::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #ef4444, #7f1d1d, #ef4444);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.5;
+}
