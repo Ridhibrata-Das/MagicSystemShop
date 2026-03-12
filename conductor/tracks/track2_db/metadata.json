@@ -1,0 +1,19 @@
+{
+  "id": "track2_db",
+  "title": "Database Architecture",
+  "type": "feature",
+  "status": "in_progress",
+  "created": "",
+  "updated": "",
+  "current_phase": 1,
+  "current_task": "1.1",
+  "phases": {
+    "total": 1,
+    "completed": 0
+  },
+  "tasks": {
+    "total": 2,
+    "completed": 0
+  },
+  "commits": []
+}

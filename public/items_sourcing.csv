@@ -1,0 +1,52 @@
+Category,Title,Description,Price,Stock,Rarity
+Weapons,Shadow Dagger,Inflicts bleeding. Attacks from the dark deal double damage.,450,15,common
+Weapons,Flame Sword,A sword imbued with fire magic. Deals burning damage over time.,1200,5,rare
+Weapons,Crystal Bow,Fires arrows of pure light. Does not run out of ammo.,2500,3,rare
+Weapons,Iron Broadsword,A standard physical weapon. Durable and reliable.,150,50,common
+Weapons,Thunder Spear,Throws lightning bolts when charged. 20% chance to paralyze.,3200,2,rare
+Weapons,Demon Scythe,Reaps the souls of the fallen. Heals user by 5% on kill.,8500,1,rare
+Weapons,Knight's Lance,High piercing damage on horseback.,600,10,common
+Weapons,Poison Blowdart,Silent killer. Stacks poison debuffs.,200,30,common
+Weapons,Katana of the Void,Ignores 50% of enemy armor.,4500,3,epic
+Armor,Leather Vest,Basic protection for beginners.,80,100,common
+Armor,Steel Chestplate,Heavy armor that reduces physical damage heavily.,850,20,common
+Armor,Mage's Cloak,Increases mana regeneration by 25%.,600,15,common
+Armor,Dragon Scale Armor,Immunity to fire damage. +500 HP.,15000,1,rare
+Armor,Shadow Boots,Muffles footsteps. +15% movement speed.,420,10,common
+Armor,Paladin's Shield,Can reflect weak magic attacks.,1100,5,common
+Armor,Elven Gauntlets,Enhances bow accuracy.,350,12,common
+Armor,Cursed Helm,Massive defense, but constantly drains 1 HP/sec.,2000,2,common
+Potions,Minor Health Potion,Restores 50 HP immediately.,25,500,common
+Potions,Major Mana Potion,Restores 250 MP over 5 seconds.,120,200,common
+Potions,Elixir of Strength,Increases physical damage by 20% for 3 minutes.,300,50,common
+Potions,Invisibility Draft,User turns invisible for 60 seconds or until attacking.,800,10,common
+Potions,Liquid Fire,Can be thrown as an explosive. Deals 150 area damage.,150,60,common
+Potions,Cure-All Tonic,Removes all negative status effects (Poison, Burn, etc).,250,100,common
+Potions,Full Restore,Restores 100% HP and MP.,1000,5,common
+Potions,Stamina Vial,Provides infinite stamina for 30 seconds.,400,25,common
+Artifacts,Ring of Rebirth,Revives the user with 10% HP if killed. Breaks after one use.,5000,3,rare
+Artifacts,Amulet of the Sun,Emits permanent light. Undead enemies take passive damage near user.,3200,1,common
+Artifacts,Thief's Coin,Increases gold acquired from monsters by 15%.,1500,8,common
+Artifacts,Timekeeper's Pocket Watch,Allows the user to rewind time by 5 seconds. 24h cooldown.,25000,1,epic
+Artifacts,Eye of Truth,Reveals invisible entities, traps, and illusions.,4500,2,rare
+Artifacts,Gem of Telepathy,Allows silent communication with allies up to 1 mile away.,2800,5,common
+Artifacts,Bag of Holding,A dimensional pocket that can hold 500kg of items weightlessly.,8000,4,common
+Artifacts,Ring of Frost,Adds a chilling effect to all physical attacks. Roots enemies.,3600,3,common
+Materials,Mithril Ore,Exceedingly rare metal used for high-tier crafting.,500,40,common
+Materials,Wyvern Bone,Tough material used for crafting robust bows and staves.,350,15,common
+Materials,Fairy Dust,Essential catalyst for advanced potion brewing.,120,200,common
+Materials,Core of the Golem,Beating stone heart of a golem. Can animate inanimate objects.,2500,2,common
+Materials,Wolf Pelt,Basic crafting material for leather goods.,15,300,common
+Materials,Star Fragment,A piece of a fallen star. Used to forge mythical weapons.,12000,1,rare
+Materials,Venom Sac,Extracted from giant spiders. Used for poison coatings.,90,80,common
+Materials,Ent Wood,Living wood that slowly repairs itself.,300,30,common
+Materials,Kraken Ink,Used for writing high-tier magical scrolls.,800,10,common
+Scrolls,Scroll of Teleportation,Teleports the user to the last visited safe zone.,500,20,common
+Scrolls,Scroll of Meteor,Summons a meteor at the target location. Massive AoE damage.,8500,1,rare
+Scrolls,Identify Scroll,Reveals the hidden properties and stats of an unknown item.,100,150,common
+Scrolls,Barrier Scroll,Creates a magical shield that blocks all damage for 10 seconds.,1200,12,common
+Scrolls,Scroll of Resurrection,Brings an ally back to life with 50% HP. Can only be used out of combat.,10000,2,rare
+Scrolls,Summon: Dire Wolf,Summons a loyal Dire Wolf to fight alongside you for 10 minutes.,650,15,common
+Scrolls,Scroll of Silence,Silences all enemies in a 20m radius, preventing spellcasting.,800,8,common
+Scrolls,Haste Scroll,Doubles attack speed and movement speed for 30 seconds.,400,25,common
+
