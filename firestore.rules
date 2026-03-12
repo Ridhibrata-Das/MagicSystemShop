@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Products: readable by everyone.
+    // In production, writing would be restricted to an Admin role.
+    // For our seed script (mock), we'll momentarily allow authenticated writes.
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Users: can only read and write their own documents
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Carts: can only read and write their own active cart
+    match /carts/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Orders: can only read and write their own orders
+    match /orders/{orderId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Allow creation if the userId they claim matches their auth uid
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+    }
+
+  }
+}

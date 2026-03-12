@@ -1,0 +1,36 @@
+{
+  "name": "magic-system-shop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.99.1",
+    "cloudinary": "^2.9.0",
+    "dompurify": "^3.2.3",
+    "firebase": "^11.10.0",
+    "next": "15.1.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "validator": "^13.12.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/validator": "^13.12.2",
+    "autoprefixer": "^10.4.20",
+    "dotenv": "^17.3.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.4",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  }
+}
