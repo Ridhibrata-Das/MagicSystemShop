@@ -74,3 +74,6 @@ MagicSystem Shop is a specialized e-commerce platform designed with a high-fidel
 *   **Input Sanitization**: Utilization of DOMPurify for all user-provided data inputs.
 *   **Asynchronous Persistence**: Firebase Auth persistence configured for secure terminal session retention.
 *   **Middleware Guards**: Protection of user sectors through Next.js middleware and client-side auth listeners.
+
+## License
+This project is proprietary software. Unauthorized distribution or replication is strictly prohibited.
