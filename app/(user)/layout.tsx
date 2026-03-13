@@ -8,6 +8,7 @@ import { User as UserProfile } from "@/types";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import DashboardSidebar from "@/components/DashboardSidebar";
 import CelestialOrb from "@/components/CelestialOrb";
+import { useLoader } from "@/contexts/LoaderContext";
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -15,28 +16,28 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { setIsLoading } = useLoader();
 
   useEffect(() => {
+    setIsLoading(true);
     const unsubscribe = subscribeToAuth(async (currentUser) => {
       if (!currentUser) {
         router.push("/login");
+        setIsLoading(false);
       } else {
         setUser(currentUser);
         const userProfile = await getUserProfile(currentUser.uid);
         setProfile(userProfile);
+        setIsLoading(false);
       }
       setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [router]);
+  }, [router, setIsLoading]);
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-system-accent"></div>
-      </div>
-    );
+    return null;
   }
 
   if (!user) return null;

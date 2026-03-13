@@ -10,6 +10,23 @@ import { Product } from "@/types";
 import SystemWindow from "@/components/SystemWindow";
 import GoldRefillModal from "@/components/GoldRefillModal";
 
+const FormLabel = ({ htmlFor, children }: { htmlFor: string, children: React.ReactNode }) => (
+  <label htmlFor={htmlFor} className="block text-xs font-orbitron font-bold text-system-accent uppercase tracking-widest mb-1">{children}</label>
+);
+
+const FormInput = ({ id, value, onChange, error }: { id: string, value: string, onChange: (val: string) => void, error?: string }) => (
+  <div>
+    <input
+      type="text"
+      id={id}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="block w-full rounded-sm border border-system-border/50 bg-black/50 py-2 px-3 text-sm font-rajdhani text-system-text focus:border-system-accent focus:outline-none focus:ring-1 focus:ring-system-accent transition-colors"
+    />
+    {error && <p className="mt-1 text-xs font-orbitron text-system-error tracking-wider">{error}</p>}
+  </div>
+);
+
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, isLoading, clearCart } = useCart();
@@ -117,22 +134,6 @@ export default function CheckoutPage() {
 
   if (isLoading || items.length === 0) return null; // Let effect redirect empty carts
 
-  const FormLabel = ({ htmlFor, children }: { htmlFor: string, children: React.ReactNode }) => (
-    <label htmlFor={htmlFor} className="block text-xs font-orbitron font-bold text-system-accent uppercase tracking-widest mb-1">{children}</label>
-  );
-
-  const FormInput = ({ id, value, onChange, error }: { id: string, value: string, onChange: (val: string) => void, error?: string }) => (
-    <div>
-      <input
-        type="text"
-        id={id}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="block w-full rounded-sm border border-system-border/50 bg-black/50 py-2 px-3 text-sm font-rajdhani text-system-text focus:border-system-accent focus:outline-none focus:ring-1 focus:ring-system-accent transition-colors"
-      />
-      {error && <p className="mt-1 text-xs font-orbitron text-system-error tracking-wider">{error}</p>}
-    </div>
-  );
 
   return (
     <div className="w-full flex-grow animate-fade-in-up pt-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

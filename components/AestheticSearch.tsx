@@ -6,6 +6,7 @@ import { analyzeAesthetic, AestheticAnalysis } from '@/services/visionService';
 import { searchByAesthetic } from '@/services/products';
 import { Product } from '@/types';
 import ProductCard from './ProductCard';
+import { useLoader } from '@/contexts/LoaderContext';
 
 export default function AestheticSearch() {
   const [image, setImage] = useState<string | null>(null);
@@ -14,6 +15,7 @@ export default function AestheticSearch() {
   const [results, setResults] = useState<Product[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { setIsLoading } = useLoader();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -114,18 +116,11 @@ export default function AestheticSearch() {
               !image || isAnalyzing ? 'opacity-30 cursor-not-allowed border border-white/5' : 'bg-system-accent text-black hover:bg-white hover:shadow-system-glow-hover'
             }`}
           >
-            {isAnalyzing ? (
-              <>
-                <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                Analyzing_Aesthetic...
-              </>
-            ) : (
-              <>
-                Manifest_Aesthetic
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </>
+            {isAnalyzing ? "Processing_Aesthetic..." : "Manifest_Aesthetic"}
+            {!isAnalyzing && (
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             )}
           </button>
         </div>

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Orbitron, Rajdhani } from "next/font/google";
 import { CartProvider } from "@/contexts/CartContext";
 import { SystemMessageProvider } from "@/contexts/SystemMessageContext";
+import { LoaderProvider } from "@/contexts/LoaderContext";
 import Navbar from "@/components/Navbar";
+import GlobalLoader from "@/components/GlobalLoader";
 import "./globals.css";
 
 const orbitron = Orbitron({ 
@@ -16,6 +18,7 @@ const rajdhani = Rajdhani({
   variable: '--font-rajdhani',
   weight: ['300', '400', '500', '600', '700'] 
 });
+
 
 export const metadata: Metadata = {
   title: "MagicSystem Shop",
@@ -35,14 +38,17 @@ export default function RootLayout({
           <div className="w-full h-2 bg-system-accent/30 animate-scanline shadow-[0_0_15px_rgba(0,240,255,0.5)]"></div>
         </div>
         
-        <SystemMessageProvider>
-          <CartProvider>
-            <Navbar />
-            <main className="flex-1 relative z-0 mt-4 px-4 pb-12 sm:px-6 lg:px-8 mx-auto w-full">
-              {children}
-            </main>
-          </CartProvider>
-        </SystemMessageProvider>
+        <LoaderProvider>
+          <SystemMessageProvider>
+            <CartProvider>
+              <Navbar />
+              <GlobalLoader />
+              <main className="flex-1 relative z-0 mt-4 px-4 pb-12 sm:px-6 lg:px-8 mx-auto w-full">
+                {children}
+              </main>
+            </CartProvider>
+          </SystemMessageProvider>
+        </LoaderProvider>
       </body>
     </html>
   );
