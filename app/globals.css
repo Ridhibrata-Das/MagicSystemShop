@@ -89,3 +89,13 @@ h1, h2, h3, h4, h5, h6 {
   filter: blur(10px);
   opacity: 0.5;
 }
+@keyframes card-manifest-warp {
+  0% { opacity: 0; transform: scale(0.8) translateY(20px) rotateY(-30deg); filter: blur(10px); }
+  60% { opacity: 1; transform: scale(1.05) translateY(-5px) rotateY(10deg); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0) rotateY(0); }
+}
+
+.animate-card-manifest {
+  animation: card-manifest-warp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  perspective: 1000px;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useSearchParams } from 'next/navigation';
 import { Product } from "@/types";
 import { useCart } from "@/contexts/CartContext";
 import { useSystemMessage } from "@/contexts/SystemMessageContext";
@@ -13,6 +14,12 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const { addToCart } = useCart();
   const { showMessage } = useSystemMessage();
+  const searchParams = useSearchParams();
+  
+  const discountPercent = parseInt(searchParams.get('off') || '0');
+  const discountedPrice = product.price * (1 - discountPercent / 100);
+  const isDiscounted = discountPercent > 0;
+
   const isOutOfStock = product.stock <= 0;
   const rarity = (product.rarity as string)?.toLowerCase() || 'common';
 
@@ -33,7 +40,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       return;
     }
     
-    addToCart(product);
+    addToCart(product, 1, isDiscounted ? discountedPrice : undefined);
     showMessage('Item Acquired', `${product.title} added to Inventory.`, 'success');
   };
 
@@ -91,9 +98,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         <div className="grid grid-cols-2 gap-4 mb-8">
           <div className="p-3 border border-system-border/30 bg-black/20">
             <div className="text-[10px] font-orbitron text-system-muted uppercase tracking-widest mb-1">Exchange Value</div>
-            <div className="text-2xl font-orbitron text-system-accent drop-shadow-[0_0_5px_rgba(0,240,255,0.6)]">
-              {product.price.toFixed(2)} G
+            <div className={`text-2xl font-orbitron ${isDiscounted ? 'text-system-success animate-pulse' : 'text-system-accent'} drop-shadow-[0_0_5px_rgba(0,240,255,0.6)]`}>
+              {discountedPrice.toFixed(2)} G
+              {isDiscounted && (
+                <span className="ml-2 text-[10px] text-system-error line-through opacity-50">
+                   {product.price.toFixed(2)}
+                </span>
+              )}
             </div>
+            {isDiscounted && (
+                <div className="text-[8px] font-orbitron text-system-success uppercase tracking-[0.2em] mt-1 shadow-sm">
+                    Divine Offer: {discountPercent}% OFF Activated
+                </div>
+            )}
           </div>
           <div className="p-3 border border-system-border/30 bg-black/20">
             <div className="text-[10px] font-orbitron text-system-muted uppercase tracking-widest mb-1">Registry Status</div>

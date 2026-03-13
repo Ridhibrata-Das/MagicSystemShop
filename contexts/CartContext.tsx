@@ -7,7 +7,7 @@ import { getCart, syncCart, clearCart as clearFirestoreCart } from "@/services/c
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (product: Product, quantity?: number) => void;
+  addToCart: (product: Product, quantity?: number, overridePrice?: number) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   removeItem: (productId: string) => void;
   clearCart: () => void;
@@ -71,15 +71,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, userId, isLoading]);
 
-  const addToCart = (product: Product, quantity = 1) => {
+  const addToCart = (product: Product, quantity = 1, overridePrice?: number) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.productId === product.id);
       if (existing) {
         return prev.map((i) =>
-          i.productId === product.id ? { ...i, quantity: i.quantity + quantity } : i
+          i.productId === product.id ? { ...i, quantity: i.quantity + quantity, priceSnapshot: overridePrice ?? i.priceSnapshot } : i
         );
       }
-      return [...prev, { productId: product.id, quantity, priceSnapshot: product.price }];
+      return [...prev, { productId: product.id, quantity, priceSnapshot: overridePrice ?? product.price }];
     });
   };
 

@@ -7,6 +7,9 @@ export interface Product {
   stock: number;
   imageUrl: string;
   rarity: 'common' | 'rare' | 'epic' | 'legendary' | 'mythical';
+  colors?: string[];
+  materials?: string[];
+  styleTags?: string[];
 }
 
 export interface User {

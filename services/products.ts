@@ -1,6 +1,7 @@
 import { getDocs, getDoc, query, where, orderBy, limit } from "firebase/firestore";
 import { collections, getProductDoc } from "./db";
 import { Product } from "@/types";
+import { AestheticAnalysis } from "./visionService";
 
 export const getAllProducts = async (): Promise<Product[]> => {
   try {
@@ -63,4 +64,57 @@ export const getProductsByIds = async (ids: string[]): Promise<Product[]> => {
     console.error("Error fetching multiple products:", error);
     return [];
   }
+};
+
+export const searchByAesthetic = async (analysis: AestheticAnalysis): Promise<Product[]> => {
+    try {
+        const allProducts = await getAllProducts();
+        
+        // Ranking Scorer
+        const scoredProducts = allProducts.map(product => {
+            let score = 0;
+            
+            // 1. Style Match (+10)
+            if (product.styleTags?.some(tag => tag.toLowerCase() === analysis.style.toLowerCase())) {
+                score += 10;
+            } else if (product.styleTags?.some(tag => analysis.keywords.some(k => k.toLowerCase().includes(tag.toLowerCase())))) {
+                score += 5;
+            }
+            
+            // 2. Color Match (+4 per color)
+            analysis.colors.forEach(color => {
+                if (product.colors?.some(pc => pc.toLowerCase().includes(color.toLowerCase()) || color.toLowerCase().includes(pc.toLowerCase()))) {
+                    score += 4;
+                }
+            });
+            
+            // 3. Material Match (+3 per material)
+            analysis.materials.forEach(material => {
+                if (product.materials?.some(pm => pm.toLowerCase() === material.toLowerCase())) {
+                    score += 3;
+                }
+            });
+            
+            // 4. Keyword/Vibe Match (+2 per keyword)
+            analysis.keywords.forEach(keyword => {
+                if (product.title.toLowerCase().includes(keyword.toLowerCase()) || 
+                    product.description.toLowerCase().includes(keyword.toLowerCase()) ||
+                    product.styleTags?.some(tag => tag.toLowerCase().includes(keyword.toLowerCase()))) {
+                    score += 2;
+                }
+            });
+
+            return { product, score };
+        });
+
+        // Filter out zero scores and sort by descending score
+        return scoredProducts
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .map(item => item.product);
+
+    } catch (error) {
+        console.error("Error in searchByAesthetic:", error);
+        return [];
+    }
 };

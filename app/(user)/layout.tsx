@@ -7,6 +7,7 @@ import { User as FirebaseUser } from "firebase/auth";
 import { User as UserProfile } from "@/types";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import DashboardSidebar from "@/components/DashboardSidebar";
+import CelestialOrb from "@/components/CelestialOrb";
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -58,6 +59,7 @@ export default function ProtectedLayout({ children }: { children: React.ReactNod
       <main className={`flex-1 flex flex-col ${isCollapsed ? 'lg:pl-20' : 'lg:pl-64'} transition-all duration-300`}>
         {children}
       </main>
+      <CelestialOrb />
     </div>
   );
 }
